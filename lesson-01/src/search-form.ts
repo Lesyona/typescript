@@ -1,9 +1,13 @@
 import { renderBlock } from './lib.js'
-import dayjs from 'dayjs'
-
-console.log(dayjs());
 
 export function renderSearchFormBlock (checkInDate: string, checkOutDate: string) {
+
+  let today = new Date();
+  let minDate = `${today.getFullYear()}-${(today.getMonth() + 1)}-${today.getDate()}`;
+
+  let date = new Date(today.getFullYear(), today.getMonth() + 2, 0);
+  let maxDate = `${today.getFullYear()}-${(today.getMonth() + 2)}-${date.getDate()}`;
+
   renderBlock(
     'search-form-block',
     `
@@ -23,11 +27,11 @@ export function renderSearchFormBlock (checkInDate: string, checkOutDate: string
         <div class="row">
           <div>
             <label for="check-in-date">Дата заезда</label>
-            <input id="check-in-date" type="date" value=${checkInDate} min="2021-05-11" max="2021-06-30" name="checkin" />
+            <input id="check-in-date" type="date" value=${checkInDate} min=${minDate} max="${maxDate}" name="checkin" />
           </div>
           <div>
             <label for="check-out-date">Дата выезда</label>
-            <input id="check-out-date" type="date" value=${checkOutDate} min="2021-05-11" max="2021-06-30" name="checkout" />
+            <input id="check-out-date" type="date" value=${checkOutDate} min=${minDate} max="${maxDate}" name="checkout" />
           </div>
           <div>
             <label for="max-price">Макс. цена суток</label>
