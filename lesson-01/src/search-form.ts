@@ -1,7 +1,17 @@
 import { renderBlock } from './lib.js'
 
-export function renderSearchFormBlock (checkInDate: string, checkOutDate: string) {
+function defaultCheckInDate(): string{
+  let today = new Date();
+  return `${today.getFullYear()}-${(today.getMonth() + 1)}-${(today.getDate() + 1)}`;
+}
 
+function defaultCheckOutDate(): string{
+  let today = new Date();
+  return `${today.getFullYear()}-${(today.getMonth() + 1)}-${(
+    today.getDate() + 3)}`;
+}
+
+export function renderSearchFormBlock (checkInDate: string=defaultCheckInDate(), checkOutDate: string=defaultCheckOutDate()) {
   let today = new Date();
   let minDate = `${today.getFullYear()}-${(today.getMonth() + 1)}-${today.getDate()}`;
 
