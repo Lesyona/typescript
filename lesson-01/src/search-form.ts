@@ -1,17 +1,24 @@
-import { renderBlock } from './lib.js'
+import {renderBlock} from './lib.js'
 
-function defaultCheckInDate(): string{
+function defaultCheckInDate(): string {
   let today = new Date();
   return `${today.getFullYear()}-${(today.getMonth() + 1)}-${(today.getDate() + 1)}`;
 }
 
-function defaultCheckOutDate(): string{
+function defaultCheckOutDate(): string {
   let today = new Date();
   return `${today.getFullYear()}-${(today.getMonth() + 1)}-${(
     today.getDate() + 3)}`;
 }
 
-export function renderSearchFormBlock (checkInDate: string=defaultCheckInDate(), checkOutDate: string=defaultCheckOutDate()) {
+interface SearchFormData {
+  city: string,
+  checkInDate: string,
+  checkOutDate: string,
+  maxPrice: number
+}
+
+export function renderSearchFormBlock(checkInDate: string = defaultCheckInDate(), checkOutDate: string = defaultCheckOutDate()): void {
   let today = new Date();
   let minDate = `${today.getFullYear()}-${(today.getMonth() + 1)}-${today.getDate()}`;
 
