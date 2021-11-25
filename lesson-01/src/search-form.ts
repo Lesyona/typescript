@@ -18,6 +18,22 @@ interface SearchFormData {
   maxPrice: number
 }
 
+interface Place {}
+
+export function getSearchData(event, searchForm): SearchFormData {
+  event.preventDefault();
+  return {
+    city: searchForm.elements["city"].value,
+    checkInDate: searchForm.elements["checkin"].value,
+    checkOutDate: searchForm.elements["checkout"].value,
+    maxPrice: searchForm.elements["price"].value
+  };
+}
+
+export function search(SearchFormData: SearchFormData, callback: (error?: Error, Place?: Place) => void): void {
+  console.log(SearchFormData);
+}
+
 export function renderSearchFormBlock(checkInDate: string = defaultCheckInDate(), checkOutDate: string = defaultCheckOutDate()): void {
   let today = new Date();
   let minDate = `${today.getFullYear()}-${(today.getMonth() + 1)}-${today.getDate()}`;
@@ -28,12 +44,12 @@ export function renderSearchFormBlock(checkInDate: string = defaultCheckInDate()
   renderBlock(
     'search-form-block',
     `
-    <form>
+    <form class="search">
       <fieldset class="search-filedset">
         <div class="row">
           <div>
             <label for="city">Город</label>
-            <input id="city" type="text" disabled value="Санкт-Петербург" />
+            <input name="city" id="city" type="text" disabled value="Санкт-Петербург" />
             <input type="hidden" disabled value="59.9386,30.3141" />
           </div>
           <!--<div class="providers">

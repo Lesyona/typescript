@@ -1,4 +1,4 @@
-import { renderSearchFormBlock } from './search-form.js'
+import { renderSearchFormBlock, getSearchData, search } from './search-form.js'
 import { renderSearchStubBlock } from './search-results.js'
 import { renderUserBlock, getUserData, getFavoritesAmount } from './user.js'
 import { renderToast } from './lib.js'
@@ -14,6 +14,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const favoritesAmount = getFavoritesAmount(localStorage.favoritesAmount);
   renderUserBlock(username, avatarUrl, favoritesAmount)
   renderSearchFormBlock()
+
+  const searchForm = document.querySelector('.search');
+  let searchFormData;
+  searchForm.addEventListener('submit', (event) => {
+    searchFormData = getSearchData(event, searchForm);
+    search(searchFormData);
+  });
+
   renderSearchStubBlock()
   renderToast(
       {text: 'Это пример уведомления. Используйте его при необходимости', type: 'success'},
