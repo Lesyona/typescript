@@ -30,7 +30,7 @@ export function getSearchData(event, searchForm): SearchFormData {
   };
 }
 
-export function search(SearchFormData: SearchFormData, callback: (error?: Error, Place?: Place) => void): void {
+export function search(SearchFormData: SearchFormData): void {
   console.log(SearchFormData);
 }
 
