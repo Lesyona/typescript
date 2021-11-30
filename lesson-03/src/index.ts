@@ -20,15 +20,11 @@ function getTodosByCount(count: number) {
       });
 }
 
-
-document.addEventListener('DOMContentLoaded', (event) => {
-  getTodosByCount(5)
-    .then((todos) => {
-      todos.map(item => console.log(
-        item.title,
-        item.userId,
-        item.completed,
-      ))
-    });
-});
-
+getTodosByCount(5)
+  .then((todos) => {
+    todos.map(item => console.log(
+      item.title,
+      item.userId,
+      item.completed,
+    ))
+  });
